@@ -7,15 +7,34 @@ if($session_userid!=""){
 }
 
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8"></meta>
   <title>login</title>
+   <script>
+    function checkForm(theForm){
+      if(theForm.userid.value==""){
+        alert("아이디를 입력하십시오.");
+        theForm.userid.focus();
+        return false;
+      }
+      else if(theForm.password.value==""){
+        alert("비밀번호를 입력하십시오.");
+        theForm.password.focus();
+        return false;
+      }
+      else{
+        return true;
+      }
+    }
+  </script>
 </head>
+
 <body>
   <form action="login_engine.php" method="post" name="login_form" id="login_form"
-        style="margin:0px;" onSubmit="return checkForm(this.form);">
+        style="margin:0px;" onSubmit="return checkForm(this);">
     <table width="500" border="0" align="center" cellpadding="5" cellspacing="1">
       <tr>
         <td width="195" align="right" bgcolor="#BDBDBD">
@@ -49,25 +68,14 @@ if($session_userid!=""){
         <tr>
           <td align="center">
             <input type="submit" name="Submit" value="로그인"></input>
+             <input type="button" name="joining" class="ahnbutton" value="회원가입"
+              onMouseOver="goLite(this.form.name,this.name)"
+              onMouseOut="goDim(this.form.name,this.name)"
+              onClick="location.href='member_join.php'"></input>
           </td>
         </tr>
-        
       </table>
-    
-    
   </form>
-
-  <script>
-    function checkForm(theForm){
-      if(theForm.userid.value==""){
-        alert("아이디를 입력하십시오.");
-        theForm.userid.focus();
-        return false;
-      }else{
-        return true;
-      }
-    }
-  </script>
   
 </body>
 </html>
